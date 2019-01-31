@@ -2,33 +2,35 @@
 
 ## How to initialize an Array in Java
 
+	Code Snippet:
 
-//initialize primitive one dimensional array
-int[] arrInt = new int[5];
-/initialize Object one dimensional array
-String[] strArr; //declaration
-strArr = new String[4]; //initialization
+		//initialize primitive one dimensional array
+		int[] arrInt = new int[5];
+		
+		//initialize Object one dimensional array
+		String[] strArr; //declaration
+		strArr = new String[4]; //initialization
 
-//initialize multidimensional array
-int[][] twoArrInt = new int[4][5];
+		//initialize multidimensional array
+		int[][] twoArrInt = new int[4][5];
 
-//multidimensional array initialization with only leftmost dimension
-int[][] twoIntArr = new int[2][];
-twoIntArr[0] = new int[2];
-twoIntArr[1] = new int[3]; //complete initialization is required before we use the array
-
-
-//array initialization using shortcut syntax
-int[] arrI = {1,2,3};
-int[][] arrI2 = {{1,2}, {1,2,3}};
+		//multidimensional array initialization with only leftmost dimension
+		int[][] twoIntArr = new int[2][];
+		twoIntArr[0] = new int[2];
+		twoIntArr[1] = new int[3]; //complete initialization is required before we use the array
 
 
-/invalid because dimension is not provided
-int[] a = new int[];
+		//array initialization using shortcut syntax
+		int[] arrI = {1,2,3};
+		int[][] arrI2 = {{1,2}, {1,2,3}};
 
-//invalid because leftmost dimension value is not provided
-int[][] aa = new int[][5];
-----------------------------------------------
+
+		/invalid because dimension is not provided
+		int[] a = new int[];
+
+		//invalid because leftmost dimension value is not provided
+		int[][] aa = new int[][5];
+--------------------------------------------------------------------------------------------
 ## Two Dimensional Array in Java
 
 	Code Snippet:
@@ -95,7 +97,7 @@ int[][] aa = new int[][5];
 				}
 			}
 		}
----------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 ## Java Array of ArrayList, ArrayList of Array
 
 
@@ -156,24 +158,25 @@ int[][] aa = new int[][5];
 
 ## Java ArrayList of Array
 
-	public class JavaArrayListOfStringArray {
+	Code Snippet:
 
-	public static void main(String[] args) {
-		// List of String arrays
-		List<String[]> list = new ArrayList<String[]>();
-		
-		String[] arr1 = { "a", "b", "c" };
-		String[] arr2 = { "1", "2", "3", "4" };
-		list.add(arr1);
-		list.add(arr2);
-		// printing list of String arrays in the ArrayList
-		for (String[] strArr : list) {
-			System.out.println(Arrays.toString(strArr));
+		public class JavaArrayListOfStringArray {
+
+			public static void main(String[] args) {
+				// List of String arrays
+				List<String[]> list = new ArrayList<String[]>();
+				
+				String[] arr1 = { "a", "b", "c" };
+				String[] arr2 = { "1", "2", "3", "4" };
+				list.add(arr1);
+				list.add(arr2);
+				// printing list of String arrays in the ArrayList
+				for (String[] strArr : list) {
+					System.out.println(Arrays.toString(strArr));
+				}
+			}
 		}
-	}
-
-}
--------------------------------------------
+--------------------------------------------------------------------------------------
 
 ## Java String to String Array Example
 
@@ -404,98 +407,98 @@ int[][] aa = new int[][5];
 ------------------------------------------------------------------------------------
 ## How to convert Array to ArrayList in Java
 
-	### Arrays.asList(T… a): 
-	-	This method returns the underlying representation of the array in the form of ArrayList
-	-	The returned ArrayList is fixed-sized and any attempt to modify that will result in UnsupportedOperationException at runtime
-	-	Also any change in the array will change the elements in ArrayList also
-		
-		Code Snippet:
-		
-			 String[] strArr = {"1", "2", "3", "4"};
-			 List<String> strList = new ArrayList<String>();
-			 strList = Arrays.asList(strArr);
-			 strArr[0] = "5";
-			 // Arrays.asList()
-			//strList.add("5");// code will throw java.lang.UnsupportedOperationException because
-			//  returns a fixed-size list backed by the specified array
+### Arrays.asList(T… a): 
+-	This method returns the underlying representation of the array in the form of ArrayList
+-	The returned ArrayList is fixed-sized and any attempt to modify that will result in UnsupportedOperationException at runtime
+-	Also any change in the array will change the elements in ArrayList also
+	
+	Code Snippet:
+	
+		 String[] strArr = {"1", "2", "3", "4"};
+		 List<String> strList = new ArrayList<String>();
+		 strList = Arrays.asList(strArr);
+		 strArr[0] = "5";
+		 // Arrays.asList()
+		//strList.add("5");// code will throw java.lang.UnsupportedOperationException because
+		//  returns a fixed-size list backed by the specified array
 
-	### Collection.addAll(ArrayList<T> list, T[] t):
-	-	The array data is copied to the list and both are independent object
-	-	Once the array is copied, we can modify both the objects independently
-	
-		Code Snippet:
-			
-			strList = new ArrayList<String>();
-			Collections.addAll(strList, strArr);
-			strList.add("5");
-			strArr[0] = "1";
-	
-	### Primitive Array to ArrayList
-	
-		Code Snippet:
+### Collection.addAll(ArrayList<T> list, T[] t):
+-	The array data is copied to the list and both are independent object
+-	Once the array is copied, we can modify both the objects independently
+
+	Code Snippet:
 		
-			int[] iArray = { 1, 3, 5, 6, 7, 8 };
-			List<int[]> aList = Arrays.asList(iArray);
-			
-			IntStream flatMapToInt = aList.stream().flatMapToInt(x -> Arrays.stream(x));
-			List<Integer> collect = flatMapToInt.boxed().collect(Collectors.toList());
-			collect.add(10);
-			System.out.println(collect);
-			
+		strList = new ArrayList<String>();
+		Collections.addAll(strList, strArr);
+		strList.add("5");
+		strArr[0] = "1";
+
+### Primitive Array to ArrayList
+
+	Code Snippet:
+	
+		int[] iArray = { 1, 3, 5, 6, 7, 8 };
+		List<int[]> aList = Arrays.asList(iArray);
+		
+		IntStream flatMapToInt = aList.stream().flatMapToInt(x -> Arrays.stream(x));
+		List<Integer> collect = flatMapToInt.boxed().collect(Collectors.toList());
+		collect.add(10);
+		System.out.println(collect);
+		
 
 
-	### UnsupportedOperationException:
-		
-		Code Snippet:
-		
-			String[] sArray = {"a","d","q","e","y"};
-			List<String> sList = Arrays.asList(sArray);
-			
-			sList.add("bharath");
-			System.out.println(sList);
-			
-			
+### UnsupportedOperationException:
 	
-		Output:
+	Code Snippet:
+	
+		String[] sArray = {"a","d","q","e","y"};
+		List<String> sList = Arrays.asList(sArray);
 		
-			Exception in thread "main" java.lang.UnsupportedOperationException
-				at java.util.AbstractList.add(AbstractList.java:148)
-				at java.util.AbstractList.add(AbstractList.java:108)
-				at arrays.copy.ArrayToArrayList.main(ArrayToArrayList.java:24)
+		sList.add("bharath");
+		System.out.println(sList);
+		
+		
+
+	Output:
+	
+		Exception in thread "main" java.lang.UnsupportedOperationException
+			at java.util.AbstractList.add(AbstractList.java:148)
+			at java.util.AbstractList.add(AbstractList.java:108)
+			at arrays.copy.ArrayToArrayList.main(ArrayToArrayList.java:24)
 ----------------------------------------------------------------------
 
 ## Java Copy Array – Array Copy in Java
 
 
-	### 4 Ways of copying Array:
+### 4 Ways of copying Array:
+
+-	Object.clone(): 
+
+	-	Since array in java is also an Object, we can use this method to achieve full array copy
+	-	This method will not if we want partial copy of the array
+	-	New separate Array will be created and elements will be copied from existing Array to new Array
 	
-	-	Object.clone(): 
+-	System.arraycopy(): 
+
+	-	System class arraycopy() is the best way to do partial copy of an array
+	-	It provides an easy way to specify the total number of elements to copy and the source and destination array index positions
+	-	For example System.arraycopy(source, 3, destination, 2, 5) will copy 5 elements from source to destination, beginning from 3rd index of source to 2nd index of destination
 	
-		-	Since array in java is also an Object, we can use this method to achieve full array copy
-		-	This method will not if we want partial copy of the array
-		-	New separate Array will be created and elements will be copied from existing Array to new Array
-		
-	-	System.arraycopy(): 
+-	Arrays.copyOf(sourceArray, noOfElementsToBeCopied): 
+
+	-	If we want to copy first few elements of an array or full copy of array, we can use this method
+	-	It’s not versatile like System.arraycopy() but easy to use
+	-	This method internally use Syste.arraycopy() method
 	
-		-	System class arraycopy() is the best way to do partial copy of an array
-		-	It provides an easy way to specify the total number of elements to copy and the source and destination array index positions
-		-	For example System.arraycopy(source, 3, destination, 2, 5) will copy 5 elements from source to destination, beginning from 3rd index of source to 2nd index of destination
-		
-	-	Arrays.copyOf(sourceArray, noOfElementsToBeCopied): 
-	
-		-	If we want to copy first few elements of an array or full copy of array, we can use this method
-		-	It’s not versatile like System.arraycopy() but easy to use
-		-	This method internally use Syste.arraycopy() method
-		
-	-	Arrays.Arrays.copyOfRange(source, biginIndex, endIndex):
-	
-		-	If we want few elements of an array to be copied, where starting index is not 0
-		-	We can use this method to copy partial Array
-		-	Again this method is also using System.arraycopy() method itself
-	
-	
+-	Arrays.Arrays.copyOfRange(source, biginIndex, endIndex):
+
+	-	If we want few elements of an array to be copied, where starting index is not 0
+	-	We can use this method to copy partial Array
+	-	Again this method is also using System.arraycopy() method itself
+
+
 	Code Snippet:
-	
+
 		Object[] oA = { 1, 4, 5, "ddfd", "ddd", new ArrayList<>(), 2, 34, 343, 34, 35, 4, 5, 4, };
 		System.out.println("Origianl Array: "+ Arrays.toString(oA));
 		
@@ -525,21 +528,23 @@ int[][] aa = new int[][5];
 
 
 ----------------------------------------------------------------------
-System.arraycopy(sourceArray, srcIndex, destArray, dstIndex, src.length);
-Arrays.toString();
-Arrays.sort();
-list.stream().toArray(String[]::new);
-Arrays.stream();
-Arrays.asList(T[] t);
-Collection.addAll(ArrayList<T> list, T[] t);
-public static <T> boolean addAll(Collection<? super T> c, T... elements) 
+## Summary:
 
-Copy Array:
+	System.arraycopy(sourceArray, srcIndex, destArray, dstIndex, src.length);
+	Arrays.toString();
+	Arrays.sort();
+	list.stream().toArray(String[]::new);
+	Arrays.stream();
+	Arrays.asList(T[] t);
+	Collection.addAll(ArrayList<T> list, T[] t);
+	public static <T> boolean addAll(Collection<? super T> c, T... elements) 
 
-	clone()
-	System.arraycopy()
-	Arrays.copyOf()
-	Arrays.copyOfRange()
+	Copy Array:
+
+		clone()
+		System.arraycopy()
+		Arrays.copyOf()
+		Arrays.copyOfRange()
 	
 	
 	
