@@ -49,7 +49,7 @@
 	
 ----------------------------------------------------------
 	
-## Find all the pairs in Array whose sum is equals to given number
+## Find all the pairs in Array whose sum is equals to given number or How to find all pairs on integer array whose sum is equal to given number? 
 
 
 	Code Snippet:
@@ -61,7 +61,6 @@
 				 Arrays.sort(array);
 				 
 				 int i = 0;
-				 
 				 int j = array.length - 1;
 				 
 				 
@@ -226,7 +225,7 @@
 		}
 
 -------------------------------------------------
-## Find Duplicates in an Array
+## Find Duplicates in an Array or How to find duplicate number on Integer array in Java? 
 
 	Code Snippet with TC o(n^2):
 
@@ -257,15 +256,16 @@
 		public static void findDuplicatesFrequency(int []array) {
 		
 			Map<Integer, Long> duplicatesMap =  Arrays.stream(array).boxed()
-			.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+			.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
 			duplicatesMap.entrySet().stream().filter(m -> m.getValue()>1)
 			.forEach(m -> System.out.println(m.getKey()+": "+ m.getValue()));
 			
 		}
 ----------------------------------------------------------------------------------------
 
-##	Search an Element in Array
-	
+##	Search an Element in Array or How to check if array contains a number in Java?
+
+
 	Code Snippet of Binary Search:
 	
 		public static boolean binarySearch(int [] array, int element) {
@@ -309,17 +309,148 @@
 			
 
 ----------------------------------------------------------------------------------------
+## How to find largest and smallest number in unsorted array? 
+
+	Code Snippet:
+	
+		public static void findMinAndMax(int [] array) {
+		
+			int largest = Integer.MIN_VALUE;
+			int lowest = Integer.MAX_VALUE;
+			
+			for(int number : array) {
+				if(number > largest) {
+					largest = number;
+				} else if(number < lowest) {
+					lowest = number;
+				}
+			}
+			
+			System.out.println("Max: "+ largest +" Min: "+ lowest);
+		}
+----------------------------------------------------------------------------------------
+## How to find repeated numbers in an array if it contains multiple duplicates?  or First Non-repeated chars?
+
+	Code Snippet of NonRepeatingChar:
+	
+		public static char findFirstNonRepeatingChar(String string) {
+			Map<String, Long> charCount = string.chars().mapToObj(ch -> String.valueOf((char) ch))
+					.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+			String ch = charCount.entrySet().stream().filter(m -> m.getValue() == 1).findFirst().get().getKey();
+			return ch.charAt(0);
+		}
+		
+	
+	Code Snippet of NonRepeating Element:	
+		public  static int findFirstNonRepeatingElement(int [] array) {
+			int firstNonRepeatingElement = Integer.MIN_VALUE;
+			
+			Map<Integer, Long> map = new LinkedHashMap<>();
+			
+			for(int number : array) {
+				map.put(number, map.containsKey(number)? 1 + map.get(number) : 1);
+			}
+			System.out.println(map);
+			for(Entry<Integer, Long> e : map.entrySet()) {
+				if(e.getValue() == 1) {
+					firstNonRepeatingElement = e.getKey();
+					break;
+				}
+			}
+			return firstNonRepeatingElement;
+		}
+-------------------------------------------------------
+## How to find first Repeating Element in Array
+
+	Code Snippet of Finding first Repeating Element:
+	
+	
+		public static int findFirstRepeatingElement(int array[]) {
+		
+			Set<Integer> nonRepeating = new LinkedHashSet<>();
+			List<Integer> repeating = new ArrayList<>();
+		
+			for(int e : array) {
+				
+				if(nonRepeating.contains(e)) {
+					nonRepeating.remove(e);
+					repeating.add(e);
+				} else {
+					nonRepeating.add(e);
+				}
+				
+			}
+			
+			return  repeating.get(0);
+		}
+
+-------------------------------------------------------
+
+## Write a program to remove duplicates from array in Java? 
+
+	Code Snippet:
+	
+		public static int[] removeDuplicatesFromArray(int []array) {
+	
+			if(array != null && array.length < 1) { 
+				throw new IllegalArgumentException();
+			}
+			
+			Arrays.sort(array);
+			int previous = array[0];
+			
+			for(int i = 1; i < array.length; i++) {
+				
+				if(array[i]== previous) {
+					array[i] = 0;
+				} else {
+					previous = array[i];
+				}
+			}
+			System.out.println(Arrays.toString(array));
+			
+			return array;
+		}
+-------------------------------------------------------
+
+## Write a program to find intersection of two sorted arrays in Java? 
+
+	Code Snippet:
+	
+		public static Integer[] findIntersection(int[] a, int[] b, int[] c) {
+			int i = 0, j = 0, k = 0;
+			List<Integer> intersectionList = new ArrayList<>();
+			while (i < a.length && j < b.length && k < c.length) {
+				if (a[i] == b[j] && b[j] == c[k]) {
+					intersectionList.add(a[i]);
+					i++;
+					j++;
+					k++;
+				} else if (a[i] < b[j])
+					i++;
+				else if (b[j] < c[k])
+					j++;
+				else
+					k++;
+			}
+			return intersectionList.stream().toArray(Integer[]::new);
+		}
+		
+		public static void main(String[] args) {
+			int a[] = {1,2,3,5,6,8,9,11,13};
+			int b[] = {2,3,4,5,7,8,11,12};
+			int c[] = {2,3,4,5,7,9,10,11,13};
+			Integer[] iAr = findIntersection(a,b,c);
+			System.out.println(Arrays.toString(iAr));
+		}
+		
+	Time Complexity:
+
+		O(n log n) if Arrays are not sorted
+		O(n) if Arrays are sorted
 
 
-
-
-
-
-
-
-
-
-
+	
 
 
 
