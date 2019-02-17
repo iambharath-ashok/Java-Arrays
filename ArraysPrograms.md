@@ -1035,12 +1035,67 @@
 ## Check if array can represent preorder traversal of binary search tree
 ## Find the smallest range that includes at least one number from each of the k lists
 ## Write 2 functions to serialize and deserialize an array of strings
+
+	Code Snippet:
+	
+		package serialize;
+
+		import java.io.BufferedInputStream;
+		import java.io.FileInputStream;
+		import java.io.FileOutputStream;
+		import java.io.ObjectInputStream;
+		import java.io.ObjectOutputStream;
+		import java.util.StringJoiner;
+
+		public class SerializeArrayOfStrings {
+
+
+			public static void serialize(String s) {
+				String[] sArray = s.split(" ");
+				StringJoiner sj = new StringJoiner("~");
+				for(String word: sArray) {
+					sj.add(word);
+				}
+				System.out.println(sj.toString());
+				try {
+					FileOutputStream fos = new FileOutputStream("string.txt");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					oos.writeObject(sj.toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			public static void desialize() {
+				try {
+					FileInputStream fis = new FileInputStream("string.txt");
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					ObjectInputStream ois = new ObjectInputStream(bis);
+					String lines = (String)ois.readObject();
+					String[] words = lines.split("~");
+
+					for(String word : words) {
+						System.out.print(word+" ");
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			public static void main(String[] args) {
+				serialize("Guru Raghavendra Vaibhava");
+				desialize();
+			}
+
+		}
+
+	
 ## You are given array A and arrayB, write a function to shuffle arrayA and so you can get countA > countB
 ## How to randomly select a number in an array in Java?	
-## ## How to find minimum value in a rotated sorted array?
+## How to find minimum value in a rotated sorted array?
 ## Given an array of of size n and a number k, find all elements that appear more than n/k times? 	
-## How find the first repeating element in an array of integers? 
-## How to find first non-repeating element in array of integers?
+
 	
 	
 
