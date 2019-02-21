@@ -301,7 +301,7 @@
 			 * @param arr
 			 * @param elements
 			 * @return
-			 */
+			 **/
 			public static Object[] add(Object[] arr, Object... elements){
 				Object[] tempArr = new Object[arr.length+elements.length];
 				System.arraycopy(arr, 0, tempArr, 0, arr.length);
@@ -532,7 +532,8 @@
 
 	System.arraycopy(sourceArray, srcIndex, destArray, dstIndex, src.length);
 	Arrays.toString();
-	Arrays.sort();
+	Arrays.sort(T[] t);
+	Arrays.sort(T[] t, Comparator c);
 	list.stream().toArray(String[]::new);
 	Arrays.stream();
 	Arrays.asList(T[] t);
@@ -545,7 +546,143 @@
 		System.arraycopy()
 		Arrays.copyOf()
 		Arrays.copyOfRange()
+		
+	compare Two Arrays:
+
+		Arrays.compare(T[] t1, TG []t2) 
+		
+	Fill:
+	
+		Arrays.fill(srcArray, element);
+		Arrays.fill(srcArray, BInd, EInd, element);
+	
+	deepToString(Object[] o);
 	
 	
+-------------------------------------------------------------
+
+	
+## How do you compare two arrays?
+
+int[] numbers1 = { 1, 2, 3 };
+int[] numbers2 = { 4, 5, 6 };
+
+System.out.println(Arrays.equals(numbers1, numbers2)); //false
+
+int[] numbers3 = { 1, 2, 3 };
+System.out.println(Arrays.equals(numbers1, numbers3)); //true
+
+-------------------------------------------------------------
+## What is Arrays.deepToString() method
+
+
+-	Arrays.deepToString() method is used to get the string representation of multidimensional arrays
+-	This method returns the deep contents of the specified array
+-	deepToString() method will only work for type Object[] and its Child
+	
+	Code Snippet:
+	
+		String[] oneDArray = new String[] {"ONE", "TWO", "THREE", "FOUR", "FIVE"};
+        System.out.println("One Dimensional Array : ");
+        //Printing one dimensional array contents using deepToString() method
+        System.out.println(Arrays.deepToString(oneDArray));
+        
+        String[][] twoDArray = new String[][] {
+            {"ONE", "TWO", "THREE", "FOUR"},
+            {"FIVE", "SIX", "SEVEN"},
+            {"EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE"}
+        };
+        	System.out.println("Two Dimensional Array : ");
+        	System.out.println(Arrays.deepToString(twoDArray));
+
+        	String[][][] threeDArray = new String[][][] {
+			    {
+			        {"ONE", "TWO", "THREE"},
+			        {"FOUR", "FIVE", "SIX", "SEVEN"}
+			    },
+			    {
+			        {"EIGHT", "NINE", "TEN", "ELEVEN"},
+			        {"TWELVE", "THIRTEEN", "FOURTEEN"}
+			    },
+			    {
+			        {"FIFTEEN", "SIXTEEN"} ,
+			        {"SEVENTEEN", "EIGHTEEN", "NINETEEN"},
+			        {"TWENTY", "TWENTY ONE"}
+			    }
+			};
+		System.out.println("Three Dimensional Array : ");
+		//Printing three dimensional array contents using deepToString() method
+		System.out.println(Arrays.deepToString(threeDArray));
+
+-------------------------------------------------------------
+## What are Jagged Arrays:
+
+-	Jagged Arrays are Arrays with different dimensions
+
 	
 	
+	Code Snippet:
+
+		int [][] iArray = new int[3][];
+		
+		iArray[0] = {1,2,4,5,6};
+		iArray[1] = {2, 5, 6};
+		iArray[2] = {8, 9, 10, 11, 12};
+-------------------------------------------------------------		
+## Can size of the Array can be Negative
+
+-	No, we will get NegativeArraySizeException
+
+-------------------------------------------------------------
+##  Is auto-widening, auto-boxing and auto-unboxing is allowed in Java
+
+-	No, only Upcasting is allowed
+-	auto-widening and  auto-boxing is not allowed
+
+	Code Snippet:
+	
+		Integer[] I = new int[5];   //Compile Time Error : Auto-Boxing not allowed
+        int[] i = new Integer[10];   //Compile Time Error : Auto-UnBoxing not allowed
+        long[] l = new byte[10];    //Compile Time Error : Auto-widening not allowed
+        Object[] o = new String[10];    //No Compile Time Error : Auto-Upcasting is allowed, String[] is upcasted to Object[]
+-------------------------------------------------------------
+
+## Anonymous array i.e an array without reference
+
+	Code Snippet:
+	
+		 public static void main(String[] args) {
+			//Creating anonymous array
+			System.out.println(new int[]{1, 2, 3}.length);    //Output : 3
+			System.out.println(new int[]{47, 21, 58, 98}[1]);   //Output : 21
+		}
+
+##  Way of declaring multi dimensional arrays
+
+	Code Snippet:
+	
+		public static void main(String[] args) {
+			int[][] twoDArray;    //Normal way of declaring two-dimensional array
+			int[] TwoDArray [];   //Another way of declaring two-dimensional array
+			int[][][] threeDArray;  //Normal way of declaring three-dimensional array
+			int[] ThreeDArray [][];    //This is also legal
+		}
+
+## Declaring the contents to the array without new operator
+	
+	Code Snippet:
+	
+		public static void main(String[] args) {
+			int[] i = {1, 2, 3, 4};   //This is the correct way
+			i = {1, 2, 3 , 4};     //Compile time error
+			i = new int[]{1, 2, 3, 4};  //This is also correct way
+		}
+
+
+		A ab[] = new A[]{new A(), new A()};
+		System.out.println(Arrays.deepToString(ab));
+
+		
+---------------------------------------------------------------------------		
+
+
